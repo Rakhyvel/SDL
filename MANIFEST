@@ -1,0 +1,228 @@
+SDL :: Package = (
+    includes ::= [
+        "<SDL.h>"
+        "<SDL_mixer>"
+    ]
+
+    # types
+    ?[Uint8] + Uint8 :: Type = Int32
+    ?[Uint16] + Uint16 :: Type = Int32
+    ?[Uint32] + Uint32 :: Type = Int32
+    ?[Uint64] + Uint64 :: Type = Int64
+    ?[SDL_Color] + Color :: Type = (
+        r : Uint8
+        g : Uint8
+        b : Uint8
+        a : Uint8
+    )
+    ?[SDL_Rect] + Rect :: Type = (
+        x : Int
+        y : Int
+        w : Int
+        h : Int
+    )
+    + Renderer :: Type = ()
+    + BlitMap :: Type = ()
+    + PixelFormat :: Type = ()
+    + Surface :: Type = (
+        flags : Uint32
+        format : PixelFormat&
+        w : Int
+        h : Int
+        pixels : ()&
+        userData : ()&
+        locked : Int
+        list_blitmap : ()&
+        clip_rect : Rect
+        map : BlitMap&
+        refcount : Int
+    )
+    + Texture :: Type = ()
+    + Thread :: Type = ()
+    + ThreadFunction :: Type = () -> ()
+    + Window :: Type = ()
+    ?[SDL_Keysym] + Keysym :: Type = (
+        scancode : Scancode
+        keycode : Keycode
+        mod : Uint16
+        unused : Uint32
+    )
+    ?[SDL_KeyboardEvent] + KeyboardEvent :: Type = (
+        type : Uint32  
+        timestamp : Uint32
+        windowID : Uint32
+        state : Uint8
+        repeat : Uint8
+        padding2 : Uint8
+        padding3 : Uint8
+        keysym : Keysym
+    )
+    ?[SDL_MouseButtonEvent] + MouseButtonEvent :: Type = (
+        type : Uint32
+        timestamp : Uint32
+        windowID : Uint32
+        which : Uint32
+        button : Uint8
+        state : Uint8
+        clicks : Uint8
+        padding1 : Uint8
+        x : Int32
+        y : Int32
+    )
+    ?[SDL_MouseWheelEvent] + MouseWheelEvent :: Type = (
+        type : Uint32
+        timestamp : Uint32
+        windowID : Uint32
+        which : Uint32
+        x : Int32
+        y : Int32
+        direction : Uint32
+    )
+    ?[SDL_Event] + Event :: Type = (
+        type : Int
+        key : KeyboardEvent
+        button : MouseButtonEvent
+        wheel : MouseWheelEvent
+    )
+    ?[SDL_RendererInfo] + RendererInfo :: Type = (
+        name : Char&
+        flags : Uint32
+        num_texture_format : Uint32
+        texture_formats : Uint32&
+        max_texture_width : Int32
+        max_texture_height : Int32
+    )
+    ?[SDL_RWops] + RWops :: Type
+    ?[SDL_Point] + Point :: Type
+
+    # enums
+    ?[SDL_BlendMode] + BlendMode :: Enum
+    ?[SDL_Scancode] + Scancode :: Enum
+    ?[SDL_Keycode] + Keycode :: Enum
+    ?[SDL_RendererFlip] + RendererFlip :: Enum
+
+    # constants
+    ?[SDL_LIL_ENDIAN] + LIL_ENDIAN :: Int
+    ?[SDL_BIG_ENDIAN] + BIG_ENDIAN :: Int
+    ?[SDL_BYTEORDER] + BYTEORDER :: Int
+
+    ?[SDL_BLEND_MODE_NONE] + BLEND_MODE_NONE :: Int
+    ?[SDL_BLEND_MODE_BLEND] + BLEND_MODE_BLEND :: Int
+    ?[SDL_BLEND_MODE_ADD] + BLEND_MODE_ADD :: Int
+    ?[SDL_BLEND_MODE_MOD] + BLEND_MODE_MOD :: Int
+
+    ?[SDL_BUTTON_LEFT] + BUTTON_LEFT :: Int
+    ?[SDL_BUTTON_MIDDLE] + BUTTON_MIDDLE :: Int
+    ?[SDL_BUTTON_RIGHT] + BUTTON_RIGHT :: Int
+    ?[SDL_BUTTON_X1] + BUTTON_X1 :: Int
+    ?[SDL_BUTTON_X2] + BUTTON_X2 :: Int
+
+    ?[SDL_FALSE] + FALSE :: Int
+    ?[SDL_TRUE] + TRUE :: Int
+
+    ?[SDL_FLIP_NONE] + FLIP_NONE :: Int
+    ?[SDL_FLIP_HORIZONTAL] + FLIP_HORIZONTAL :: Int
+    ?[SDL_FLIP_VERTICAL] + FLIP_VERTICAL :: Int
+
+    ?[SDL_HINT_RENDER_DRIVER] + HINT_RENDER_DRIVER :: Int
+    ?[SDL_HINT_RENDER_SCALE_QUALITY] + HINT_RENDER_SCALE_QUALITY :: Int
+
+    ?[SDL_INIT_VIDEO] + INIT_VIDEO :: Int
+
+    ?[SDL_KEYDOWN] + KEYDOWN :: Int
+    ?[SDL_KEYUP] + KEYUP :: Int
+
+    ?[SDL_MOUSEBUTTONDOWN] + MOUSEBUTTONDOWN :: Int
+    ?[SDL_MOUSEBUTTONUP] + MOUSEBUTTONUP :: Int
+    ?[SDL_MOUSEMOTION] + MOUSEMOTION :: Int
+    ?[SDL_MOUSEWHEEL] + MOUSEWHEEL :: Int
+
+    ?[SDL_PIXELFORMAT_ARGB8888] + PIXELFORMAT_ARGB8888 :: Int
+    ?[SDL_PIXELFORMAT_RGBA8888] + PIXELFORMAT_RGBA8888 :: Int
+
+    ?[SDL_QUIT] + QUIT :: Int
+
+    ?[SDL_RENDERER_ACCELERATED] + RENDERER_ACCELERATED :: Int
+    ?[SDL_RENDERER_PRESENTVSYNC] + RENDERER_PRESENTVSYNC :: Int
+    ?[SDL_RENDERER_TARGETTEXTURE] + RENDERER_TARGETTEXTURE :: Int
+
+    ?[SDL_RENDER_DEVICE_RESET] + RENDER_DEVICE_RESET :: Int
+    ?[SDL_RENDER_TARGETS_RESET] + RENDER_TARGETS_RESET :: Int
+
+    ?[SDL_SCANCODE_COMMA] + SCANCODE_COMMA :: Int
+    ?[SDL_SCANCODE_DOWN] + SCANCODE_DOWN :: Int
+    ?[SDL_SCANCODE_ESCAPE] + SCANCODE_ESCAPE :: Int
+    ?[SDL_SCANCODE_LCTRL] + SCANCODE_LCTRL :: Int
+    ?[SDL_SCANCODE_LEFT] + SCANCODE_LEFT :: Int
+    ?[SDL_SCANCODE_LSHIFT] + SCANCODE_LSHIFT :: Int
+    ?[SDL_SCANCODE_PERIOD] + SCANCODE_PERIOD :: Int
+    ?[SDL_SCANCODE_RIGHT] + SCANCODE_RIGHT :: Int
+    ?[SDL_SCANCODE_S] + SCANCODE_S :: Int
+    ?[SDL_SCANCODE_UP] + SCANCODE_UP :: Int
+
+    ?[SDL_SWSURFACE] + SWSURFACE :: Int
+
+    ?[SDL_TEXTUREACCESS_STATIC] + TEXTUREACCESS_STATIC :: Int
+    ?[SDL_TEXTUREACCESS_TARGET] + TEXTUREACCESS_TARGET :: Int
+
+    ?[SDL_WINDOWEVENT] + WINDOWEVENT :: Int
+    ?[SDL_WINDOWPOS_CENTERED] + WINDOWPOS_CENTERED :: Int
+    ?[SDL_WINDOW_OPENGL] + WINDOW_OPENGL :: Int
+    ?[SDL_WINDOW_RESIZABLE] + WINDOW_RESIZABLE :: Int
+
+    # functions
+    ?[SDL_BlitSurface] + blitSurface :: (src : Surface&, srcrect : Rect&, dst : Surface&, dstrect : Rect&) -> Int
+    ?[SDL_CreateRGBSurface] + createRGBSurface :: (flags : Int32, width : Int, height : Int, depth : Int, Amask : Int) -> Surface&
+    ?[SDL_CreateRenderer] + createRenderer :: (window : Window&, index : Int, flags : Int) -> Renderer&
+    ?[SDL_CreateTexture] + createTexture :: (renderer : Renderer&, format : Int, access : Int, w : Int, h : Int) -> Texture&
+    ?[SDL_CreateTextureFromSurface] + createTextureFromSurface :: (renderer : Renderer&, surface : Surface&) -> Texture&
+    ?[SDL_CreateThread] + createThread :: (fn : ThreadFunction, name : Char&, data : ()&) -> Thread&
+    ?[SDL_CreateWindow] + createWindow :: (title : Char&, x : Int, y : Int, w : Int, h : Int, flags : Int) -> Window&
+    ?[SDL_DestroyTexture] + destroyTexture :: (texture : Texture&) -> ()
+    ?[SDL_FreeSurface] + freeSurface :: (surface : Surface&) -> ()
+    ?[SDL_GetError] + getError :: () -> Char&
+    ?[SDL_GetHint] + getHint :: (name : Char&) -> Char&
+    ?[SDL_GetKeyFromScancode] + getKeyFromScancode :: (scancode : Scancode) -> Keycode
+    ?[SDL_GetMouseState] + getMouseState :: (x : Int&, y : Int&) -> Uint32
+    ?[SDL_GetPerformanceCounter] + getPerformanceCounter :: () -> Event
+    ?[SDL_GetPerformanceFrequency] + getPerformanceFrequency :: () -> Uint64
+    ?[SDL_GetRenderDrawColor] + getRenderDrawColor :: (renderer : Renderer&, r : Uint8&, g : Uint8&, b : Uint8&, a : Uint8&) -> Int32
+    ?[SDL_GetRenderTarget] + getRenderTarget :: (renderer : Renderer&) -> Texture&
+    ?[SDL_GetRendererInfo] + getRendererInfo :: (renderer : Renderer&, info : RendererInfo&) -> Int32
+    ?[SDL_GetWindowSize] + getWindowSize :: (window : Window&, w : Int&, h : Int&) -> ()
+    ?[SDL_Init] + init :: (flags : Uint32) -> Int
+    ?[SDL_IntersectRect] + intersectRect :: (A : Rect&, B : Rect&, result : Rect&) -> Int
+    ?[SDL_Log] + log :: (fmt : Char& ...) -> ()
+    ?[SDL_PollEvent] + pollEvent :: (event : Event&) -> Int
+    ?[SDL_QueryTexture] + queryTexture :: (texture : Texture&, format : Uint32&, access : Int&, w : Int&, h : Int&)
+    ?[SDL_Quit] + quit :: () -> ()
+    ?[SDL_RWFromFile] + rwFromFile :: (file : Char&, mode : Char&) -> RWops&
+    ?[SDL_RWclose] + rwclose :: (context : RWops&) -> Int
+    ?[SDL_RenderClear] + renderClear :: (renderer : Renderer&) -> Int
+    ?[SDL_RenderCopy] + renderCopy :: (renderer : Renderer&, texture : Texture&, srcrect : Rect&, dstrect : Rect&) -> Int
+    ?[SDL_RenderCopyEx] + renderCopyEx :: (renderer : Renderer&, texture : Texture&, srcrect : Rect&, dstrect : Rect&, angle : Real64, center : Point, flip : RendererFlip) -> Int
+    ?[SDL_RenderDrawLine] + renderDrawLine :: (renderer : Renderer&, x1 : Int, y1 : Int, x2 : Int, y2 : Int) -> Int
+    ?[SDL_RenderDrawPoint] + renderDrawPoint :: (renderer : Renderer&, x1 : Int, y1 : Int) -> Int
+    ?[SDL_RenderDrawRect] + renderDrawRect :: (renderer : Renderer&, rect : Rect&) -> Int
+    ?[SDL_RenderFillRect] + renderFillRect :: (renderer : Renderer&, rect : Rect&) -> Int
+    ?[SDL_RenderGetClipRect] + renderGetClipRect :: (renderer : Renderer&, rect : Rect&) -> Int
+    ?[SDL_RenderGetLogicalSize] + renderGetLogicalSize :: (renderer : Renderer&, w : Int&, h : Int&) -> Int
+    ?[SDL_RenderGetScale] + renderGetScale :: (renderer : Renderer&, w : Real&, h : Real&) -> Int
+    ?[SDL_RenderGetViewport] + renderGetViewport :: (renderer : Renderer&, rect : Rect&) -> Int
+    ?[SDL_RenderIsClipEnabled] + renderIsClipEnabled :: (renderer : Renderer&) -> Bool
+    ?[SDL_RenderPresent] + renderPresent :: (renderer : Renderer&) -> ()
+    ?[SDL_RenderReadPixels] + renderReadPixels :: (renderer : Renderer&, rect : Rect&, format : Uint32, pixels : ()&, pitch : Int) -> Int
+    ?[SDL_RenderSetClipRect] + RenderSetClipRect :: (renderer : Renderer&, rect : Rect&) -> Int
+    ?[SDL_RenderSetLogicalSize] + renderSetLogicalSize :: (renderer : Renderer&, w : Int, h : Int) -> Int
+    ?[SDL_RenderSetScale] + renderSetScale :: (renderer : Renderer&, w : Real, h : Real) -> Int
+    ?[SDL_RenderSetViewport] + renderSetViewport :: (renderer : Renderer&, rect : Rect&) -> Int
+    ?[SDL_SetHint] + setHint :: (name : Char&, value : Char&) -> Bool
+    ?[SDL_SetRenderDrawBlendMode] + setRenderDrawBlendMode :: (renderer : Renderer&, blendMode : BlendMode) -> Int
+    ?[SDL_SetRenderDrawColor] + setRenderDrawColor :: (renderer : Renderer&, r : Uint8, g : Uint8, b : Uint8, a : Uint8) -> Int
+    ?[SDL_SetRenderTarget] + setRenderTarget :: (renderer : Renderer&, texture : Texture&) -> Int
+    ?[SDL_SetSurfaceBlendMode] + setSurfaceBlendMode :: (surface : Surface&, blendMode : BlendMode) -> Int
+    ?[SDL_SetTextureAlphaMod] + setTextureAlphaMod :: (texture : Texture&, alpha : Uint8) -> Int
+    ?[SDL_SetTextureBlendMode] + setTextureBlendMode :: (texture : Texture&, blendMode : BlendMode) -> Int
+    ?[SDL_SetTextureColorMod] + setTextureColorMod :: (texture : Texture&, r : Uint8, g : Uint8, b : Uint8, a : Uint8) -> Int
+    ?[SDL_UpdateTexture] + updateTexture :: (texture : Texture&, rect : Rect&, pixels : ()&, pitch : Int) -> Int
+)
